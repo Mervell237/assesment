@@ -57,10 +57,7 @@ class _ProductPageState extends State<ProductPage> {
               child: Icon(Icons.local_cafe),
             ),
             SizedBox(height: 4),
-            Text(
-              'Siren Order',
-              style: TextStyle(fontWeight: FontWeight.w600),
-            ),
+            Text('Siren Order', style: TextStyle(fontWeight: FontWeight.w600)),
           ],
         ),
         const Spacer(flex: 2),
@@ -77,10 +74,7 @@ class _ProductPageState extends State<ProductPage> {
         color: Color(0xFF1E3932),
       ),
       alignment: Alignment.center,
-      child: Image.asset(
-        'assets/latte.png',
-        height: 160,
-      ),
+      child: Image.asset('assets/latte.png', height: 160),
     );
   }
 
@@ -158,24 +152,19 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
-  // ================= SIZE =================
   Widget _sizeSelector() {
     final sizes = ['Short', 'Tall', 'Grande', 'Venti'];
     return _pillContainer(
       Row(
-        children: sizes.map((s) {
-          final active = size == s;
-          return _pillButton(
-            s,
-            active,
-            () => setState(() => size = s),
-          );
-        }).toList(),
+        children:
+            sizes.map((s) {
+              final active = size == s;
+              return _pillButton(s, active, () => setState(() => size = s));
+            }).toList(),
       ),
     );
   }
 
-  // ================= ACTIONS =================
   Widget _actionButtons() {
     return _pillContainer(
       Row(
@@ -205,11 +194,17 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
-  // ================= BOTTOM NAV =================
+  int _currentIndex = 0;
   Widget _bottomNav() {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       selectedItemColor: const Color(0xFF00754A),
+      currentIndex: _currentIndex,
+      onTap: (index){
+        setState(() {
+          _currentIndex =index;
+        });
+      },
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
         BottomNavigationBarItem(icon: Icon(Icons.wallet), label: ''),
@@ -219,7 +214,7 @@ class _ProductPageState extends State<ProductPage> {
       ],
     );
   }
-  
+
   Widget _pillContainer(Widget child) {
     return Container(
       padding: const EdgeInsets.all(6),
@@ -244,9 +239,7 @@ class _ProductPageState extends State<ProductPage> {
           child: Text(
             text,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: active ? Colors.black : Colors.grey,
-            ),
+            style: TextStyle(color: active ? Colors.black : Colors.grey),
           ),
         ),
       ),
