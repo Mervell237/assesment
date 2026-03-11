@@ -19,7 +19,7 @@ class Home extends StatelessWidget {
                   children: [
                     _circleIcon(Icons.arrow_back),
                     const Spacer(),
-                    Image.asset('assets/images/icon.png', height: 42),
+                    Image.asset('assets/images/header-image.png', height: 42),
                     const Spacer(),
                     Stack(
                       children: [

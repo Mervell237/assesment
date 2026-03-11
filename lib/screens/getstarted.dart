@@ -1,6 +1,7 @@
+import 'package:assesment/screens/login.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider_plus/carousel_slider_plus.dart';
-import 'login.dart';
+// import 'package:carousel_slider_plus/carousel_slider_plus.dart';
+// import 'login.dart';
 
 class GetStartedScreen extends StatefulWidget {
   const GetStartedScreen({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class _GetstartedScreenState extends State<GetStartedScreen> {
 
   final List<Map<String, dynamic>> screens = [
     {
+    
       "image": "assets/images/slide1.png",
       "title": "Good Coffee",
       "titleBase": "Good Moods",
@@ -57,7 +59,7 @@ class _GetstartedScreenState extends State<GetStartedScreen> {
                   itemCount: screens.length,
                   onPageChanged: (value) {
                     setState(() {
-                      myCurrentIndex = value;
+                      myCurrentIndex = value ;
                     });
                   },
                   itemBuilder: (BuildContext context, int index) {
@@ -132,7 +134,12 @@ class _GetstartedScreenState extends State<GetStartedScreen> {
                   ),
                   minimumSize: Size(235, 61),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  );
+                },
                 child: Text(
                   'Get Started',
                   style: TextStyle(

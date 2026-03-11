@@ -15,7 +15,6 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: _bottomNav(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
@@ -74,7 +73,7 @@ class _ProductPageState extends State<ProductPage> {
         color: Color(0xFF1E3932),
       ),
       alignment: Alignment.center,
-      child: Image.asset('assets/latte.png', height: 160),
+      child: Image.asset('assets/images/cinnamondolcelatte.jpeg', height: 160),
     );
   }
 
@@ -194,26 +193,8 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
-  int _currentIndex = 0;
-  Widget _bottomNav() {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      selectedItemColor: const Color(0xFF00754A),
-      currentIndex: _currentIndex,
-      onTap: (index){
-        setState(() {
-          _currentIndex =index;
-        });
-      },
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.wallet), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.shopping_bag), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.support_agent), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.location_on), label: ''),
-      ],
-    );
-  }
+
+  
 
   Widget _pillContainer(Widget child) {
     return Container(
