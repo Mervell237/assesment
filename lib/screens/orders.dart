@@ -1,4 +1,6 @@
+import 'package:assesment/screens/counter_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OrdersScreen extends StatefulWidget {
   const OrdersScreen({Key? key}) : super(key: key);
@@ -122,144 +124,105 @@ class _OrdersScreenState extends State<OrdersScreen> {
                               color: Color(0XFF00623B),
                             ),
                           ),
-                          Container(
-                            width: 157.7,
-                            height: 50,
-                            // color: Colors.grey[300],
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 12,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                //DECREMENT BUTTON
-                                GestureDetector(
-                                  onTap: decrement,
-                                  child: Container(
-                                    height: 50,
-                                    width: 36,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Icon(
-                                      Icons.remove,
-                                      size: 25,
-                                      color: Colors.black54,
-                                    ),
-                                  ),
+                          Row(
+                            children: [
+                              Container(
+                                width: 157.7,
+                                height: 50,
+                                // color: Colors.grey[300],
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 12,
                                 ),
-                                SizedBox(width: 18),
-                                // Material(
-                                //   color: Colors.grey,
-                                //   borderRadius: BorderRadius.circular(12),
-                                // ),
-                                // InkWell(
-                                //   onTap: () {
-                                //     setState(() {
-                                //       if (quantity > 0) quantity--;
-                                //     });
-                                //   },
-                                //   child: Padding(
-                                //     padding: EdgeInsets.symmetric(
-                                //       horizontal: 16,
-                                //       vertical: 12,
-                                //     ),
-                                //     child: Icon(Icons.remove,
-                                //      color: Colors.white,),
-                                //   ),
-                                // ),
-                                //NUMBER
-                                Text(
-                                  quantity.toString(),
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black,
-                                  ),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(30),
                                 ),
-                                SizedBox(width: 18),
-                                // Container(
-                                //   color: Colors.grey[300],
-                                //   padding: EdgeInsets.symmetric(
-                                //     horizontal: 20,
-                                //     vertical: 12
-                                //   ),
-                                //   child: Text(
-                                //     quantity.toString(),
-                                //     style:
-                                //     TextStyle(
-                                //       fontSize: 18,
-                                //       fontWeight: FontWeight.w500
-                                //     ),
-                                //   ),
-                                // ),
-                                //INCREMENT BUTTON
-                                GestureDetector(
-                                  onTap: increment,
-                                  child: Container(
-                                    height: 40,
-                                    width: 36,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    BlocProvider(
+                                      create: (_) => CounterCubit(),
+                                      child: Center(
+                                        child: Row(
+                                          children: [
+                                         
+                                          Row(
+                                            children: [
+                                              GestureDetector(
+                                                onTap: () {
+                                                  print("Increment tapped!");
+                                                  context.read<CounterCubit>().decrement();
+                                                },
+                                                child: Container(
+                                                  height: 50,
+                                                  width: 36,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.remove,
+                                                    size: 25,
+                                                    color: Colors.black54,
+                                                  ),
+                                                ),
+                                              ),
+
+                                              SizedBox(width: 18),
+
+                                               BlocBuilder<CounterCubit, int>(
+                                                 builder: (context, quantity) {
+                                                    return Text(quantity.toString(),
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w600,
+                                                        color: Colors.black
+
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              // Text(
+                                              //   quantity.toString(),
+                                              //   style: TextStyle(
+                                              //     fontSize: 14,
+                                              //     fontWeight: FontWeight.w600,
+                                              //     color: Colors.black,
+                                              //   ),
+                                              // ),
+                                              SizedBox(width: 18),
+
+                                              GestureDetector(
+                                                onTap: () {
+                                                  context.read<CounterCubit>().increment();
+                                                },
+                                                child: Container(
+                                                  height: 40,
+                                                  width: 36,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.add,
+                                                    size: 25,
+                                                    color: Colors.black54,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          ]
+                                        ),
+                                      ),                        
                                     ),
-                                    child: Icon(
-                                      Icons.add,
-                                      size: 25,
-                                      color: Colors.black54,
-                                    ),
-                                  ),
+                                  ],
                                 ),
-                                // Material(
-                                //   color: Colors.grey,
-                                //   borderRadius: BorderRadius.circular(12),
-                                // ),
-                                // InkWell(
-                                //   onTap: () {
-                                //     setState(() {
-                                //       quantity++;
-                                //     });
-                                //   },
-                                //   child: Padding(
-                                //     padding: EdgeInsets.symmetric(
-                                //       horizontal: 20,
-                                //       vertical: 12
-                                //     ),
-                                //     child: Icon(Icons.add, color: Colors.white,),
-                                //   ),
-                                // )
-                                // IconButton(
-                                //   onPressed: () {
-                                //     setState(() {
-                                //       if (quantity > 0) {
-                                //         quantity--;
-                                //       }
-                                //     });
-                                //   },
-                                //   icon: const Icon(Icons.remove),
-                                // ),
-                                // IconButton(
-                                //   onPressed: () {
-                                //         setState(() {
-                                //           quantity++;
-                                //         });
-                                //       },
-                                //       icon: const Icon(Icons.add),
-                                //     ),
-                                //   ],
-                                // ),
-                                //increment button
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: 20),
-                          // **
                         ],
                       ),
                     ),
@@ -548,33 +511,54 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                   children: [
                                     Container(
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          Icon(Icons.shopping_cart, color: ordersButtons== 0 ? Color(0XFF00623B) : Colors.grey),
+                                          Icon(
+                                            Icons.shopping_cart,
+                                            color:
+                                                ordersButtons == 0
+                                                    ? Color(0XFF00623B)
+                                                    : Colors.grey,
+                                          ),
                                           Text(
                                             ' Add to cart',
-                                            style: TextStyle(color: ordersButtons == 0 ? Color(0XFF00623B) : Colors.grey),
+                                            style: TextStyle(
+                                              color:
+                                                  ordersButtons == 0
+                                                      ? Color(0XFF00623B)
+                                                      : Colors.grey,
+                                            ),
                                           ),
-                                          SizedBox(width: 8,),
+                                          SizedBox(width: 8),
                                           VerticalDivider(
                                             width: 1.89,
                                             thickness: 1,
                                             color: Colors.grey,
                                           ),
-                                          SizedBox(width: 8,),                                          
-                                        Icon(Icons.check, color: ordersButtons== 1 ? Color(0XFF00623B) : Colors.grey),
-                                        Text(
-                                          ' Order now',
-                                          style: TextStyle(color: ordersButtons == 1 ? Color(0XFF00623B) : Colors.grey),
-                                        ),                                          
+                                          SizedBox(width: 8),
+                                          Icon(
+                                            Icons.check,
+                                            color:
+                                                ordersButtons == 1
+                                                    ? Color(0XFF00623B)
+                                                    : Colors.grey,
+                                          ),
+                                          Text(
+                                            ' Order now',
+                                            style: TextStyle(
+                                              color:
+                                                  ordersButtons == 1
+                                                      ? Color(0XFF00623B)
+                                                      : Colors.grey,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
-                                
                                   ],
                                 ),
                               ),
-                              
                             ),
                             // Container(
                             //   child:  GestureDetector(
@@ -594,14 +578,13 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             //           ],
                             //         ),
                             //       )
-                            //     ]  
+                            //     ]
                             //   )
-                                                        
+
                             //   ),
-                            // )  
+                            // )
                           ],
                         ),
-                        
                       ],
                     ),
                   ],
